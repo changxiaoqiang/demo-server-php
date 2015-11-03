@@ -86,7 +86,7 @@ function quit_group(Integer $id) {
 function get_group(Integer $id) {
 	$db = new DataBase(DB_DNS, DB_USER, DB_PASSWORD);
 	$user_id = getCurrentUserId();
-	$group = $db->fetch('SELETE * FROM `group` WHERE `id` = ?', $id);
+	$group = $db->fetch('SELECT * FROM `group` WHERE `id` = ?', $id);
 	$group['users'] = $db->fetchAll('SELECT a.`id`, a.`username`, a.`portrait` FROM `user` AS a INNER JOIN `group_user` AS b ON  b.user_id=a.id WHERE b.group_id = ?' ,$id);
 
 	return $group;
